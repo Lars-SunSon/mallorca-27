@@ -109,6 +109,29 @@ legend{padding:0}
 .opt input:checked + .card .price{background:var(--gold);color:var(--bg)}
 .card .warn{color:var(--gold-soft);font-size:.85rem;margin-top:.5rem}
 
+/* ---------- Beispiel-Galerien ---------- */
+.examples{margin:-.15rem 0 .1rem;padding:0 0 .2rem}
+.examples-label{font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);padding:0 .2rem;margin-bottom:.55rem}
+.examples-row{
+  display:grid;grid-auto-flow:column;grid-auto-columns:74%;gap:.7rem;
+  overflow-x:auto;scroll-snap-type:x proximity;padding:0 .2rem .3rem;margin:0 -.2rem;
+  -webkit-overflow-scrolling:touch;
+}
+@media(min-width:560px){.examples-row{grid-auto-columns:minmax(0,1fr);overflow-x:visible}}
+.ex{
+  scroll-snap-align:start;display:block;background:var(--surface-1);border-radius:12px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;
+  transition:border-color .18s ease,transform .18s ease;
+}
+.ex:hover{border-color:var(--accent-deep);transform:translateY(-2px)}
+.ex img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--surface-2)}
+.ex-body{display:flex;flex-direction:column;gap:.15rem;padding:.65rem .75rem .8rem}
+.ex-body b{font-family:Montserrat,sans-serif;font-weight:700;font-size:.92rem;color:var(--text)}
+.ex-body span{font-size:.78rem;color:var(--text-muted)}
+.ex-price{color:var(--gold)!important;font-weight:600}
+.examples-hint{font-size:.76rem;color:var(--text-dim);padding:0 .2rem;margin-top:-.2rem}
+.examples-disclaimer{font-size:.8rem;color:var(--text-dim);margin-top:1.4rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)}
+
 /* ---------- Name ---------- */
 .field{margin-top:1.1rem}
 .field label{display:block;font-size:.86rem;color:var(--text-muted);margin-bottom:.4rem}
@@ -226,12 +249,47 @@ footer p + p{margin-top:.6rem}
         <span class="meta">10 km zum Arenal, 15 Minuten zum Flughafen. Taxi kostet fast nichts, dafür ist die Villa eher Vorstadt als Postkarte.</span>
         <span class="price eur">341 € pro Mann</span></span></span>
       </label>
+      <div class="examples" role="group" aria-label="Beispiele stadtnah">
+        <p class="examples-label">So sieht das ungefähr aus</p>
+        <div class="examples-row">
+          <a class="ex" href="https://www.holidu.com/d/49725547" target="_blank" rel="noopener">
+            <img src="images/fincas/stadtnah-1-agusmar.jpg" alt="Villa Agusmar in Son Veri Nou, moderne Villa mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Villa Agusmar</b><span>Son Veri Nou · 10 P.</span><span class="ex-price eur">ab 500 €/Nacht</span></span>
+          </a>
+          <a class="ex" href="https://www.ferienwohnungen.de/vacation-home/65801356" target="_blank" rel="noopener">
+            <img src="images/fincas/stadtnah-2-badiagran.jpg" alt="Gartenvilla in Badia Gran mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Gartenvilla Badia Gran</b><span>Badia Gran · 8 P.</span><span class="ex-price eur">ab 409 €/Nacht</span></span>
+          </a>
+          <a class="ex" href="https://www.fincamallorca.de/fincas/villas/pool/palma/" target="_blank" rel="noopener">
+            <img src="images/fincas/stadtnah-3-canpastilla.jpg" alt="Villa in Can Pastilla mit Pool und Garten" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Villa Can Pastilla</b><span>Can Pastilla · 10 P.</span><span class="ex-price eur">ab 348 €/Nacht</span></span>
+          </a>
+        </div>
+      </div>
       <label class="opt"><input type="radio" name="finca" value="Llucmajor (25 km), 315 EUR">
         <span class="card"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
         <span><h3>Mittendrin – Llucmajor oder Algaida</h3>
         <span class="meta">25 km zum Arenal. Klassische Finca-Gegend: für dasselbe Geld deutlich mehr Haus, Taxi eine gute halbe Stunde.</span>
         <span class="price eur">315 € pro Mann</span></span></span>
       </label>
+      <div class="examples" role="group" aria-label="Beispiele mittendrin">
+        <p class="examples-label">So sieht das ungefähr aus</p>
+        <div class="examples-row">
+          <a class="ex" href="https://miet-finca-mallorca.de/catalania" target="_blank" rel="noopener">
+            <img src="images/fincas/mittel-1-catalania.jpg" alt="Finca Catalania bei Algaida, Landhaus mit Pool und Palmen" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Finca Catalania</b><span>Algaida · 8 P.</span><span class="ex-price eur">ab 357 €/Nacht</span></span>
+          </a>
+          <a class="ex" href="https://www.idealpropertymallorca.com/rentals/country-house-algaida-rural-finca-can-lloret-in-mallorca-with-pool-559725.html" target="_blank" rel="noopener">
+            <img src="images/fincas/mittel-2-canlloret.jpg" alt="Finca Can Lloret bei Algaida mit Steinhaus und Pool" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Finca Can Lloret</b><span>Algaida · 8 P.</span><span class="ex-price eur">ab 136 €/Nacht*</span></span>
+          </a>
+          <a class="ex" href="https://www.holidu.com/d/45396553" target="_blank" rel="noopener">
+            <img src="images/fincas/mittel-3-soncaldes.jpg" alt="Finca Son Caldés bei Llucmajor mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Finca Son Caldés</b><span>Llucmajor · 8 P.</span><span class="ex-price eur">ab 286 €/Nacht</span></span>
+          </a>
+        </div>
+        <p class="examples-hint">*Basispreis außerhalb der Saison – im September realistisch deutlich höher.</p>
+      </div>
       <label class="opt"><input type="radio" name="finca" value="Inselinneres (40 km), 332 EUR">
         <span class="card"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
         <span><h3>Weit draußen – Campos oder Felanitx</h3>
@@ -239,7 +297,25 @@ footer p + p{margin-top:.6rem}
         <span class="price eur">332 € pro Mann</span>
         <span class="warn">Nachts um drei sind das 45 Minuten Rückfahrt.</span></span></span>
       </label>
+      <div class="examples" role="group" aria-label="Beispiele weit draußen">
+        <p class="examples-label">So sieht das ungefähr aus</p>
+        <div class="examples-row">
+          <a class="ex" href="https://www.fincaurlaub.de/fincas/finca-son-balart/" target="_blank" rel="noopener">
+            <img src="images/fincas/weit-1-sonbalart.jpg" alt="Finca Son Balart bei Es Llombards, Landhaus mit Pool und Palme" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Finca Son Balart</b><span>Es Llombards · 10 P.</span><span class="ex-price eur">ab 323 €/Nacht</span></span>
+          </a>
+          <a class="ex" href="https://www.fincaurlaub.de/fincas/finca-can-torre/" target="_blank" rel="noopener">
+            <img src="images/fincas/weit-2-cantorre.jpg" alt="Finca Can Torre bei Alqueria Blanca, herrschaftliches Landhaus mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Finca Can Torre</b><span>Alqueria Blanca · 10 P.</span><span class="ex-price eur">ab 693 €/Nacht</span></span>
+          </a>
+          <a class="ex" href="https://www.fincaurlaub.de/fincas/finca-son-quelles/" target="_blank" rel="noopener">
+            <img src="images/fincas/weit-3-sonquelles.jpg" alt="Finca Son Quelles bei Felanitx mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-body"><b>Finca Son Quelles</b><span>Felanitx · 8 P.</span><span class="ex-price eur">ab 440 €/Nacht</span></span>
+          </a>
+        </div>
+      </div>
     </div>
+    <p class="examples-disclaimer">Alle neun Beispiele sind echte Anzeigen, Stand September 2026 – reine Orientierung, keine geprüfte Verfügbarkeit für 2027. Ein Klick öffnet die Originalanzeige mit allen Fotos.</p>
   </fieldset>
 </section>
 

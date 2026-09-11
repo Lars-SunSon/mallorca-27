@@ -57,6 +57,11 @@ auf `#190926` liegt über 7:1.
 - **Faktenzeile** – gesetzte Rahmenbedingungen, Icon links, kein Auswahlzustand.
 - **Kostentabelle** – ausklappbar, tabellarische Ziffern, Summe hervorgehoben.
 - **Ergebnisfeld** – baut den WhatsApp-Text live, mit Kopier- und WhatsApp-Knopf.
+- **Beispiel-Galerie** – unter jeder Finca-Option eine horizontal scrollbare Reihe
+  mit drei echten, aktuell recherchierten Anzeigen (Foto, Name, Kapazität, Preis).
+  Reiner Anschauungszweck, kein Bestandteil der Abstimmung selbst – jede Kachel
+  verlinkt auf die Originalanzeige. Bilder liegen lokal unter `images/fincas/`,
+  weil Hotlink-Schutz vieler Vermieter direktes Einbetten sonst verhindert.
 
 Icons sind **gezeichnete SVG** in einheitlichem Strich, keine Emoji.
 
