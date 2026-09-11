@@ -57,11 +57,23 @@ auf `#190926` liegt über 7:1.
 - **Faktenzeile** – gesetzte Rahmenbedingungen, Icon links, kein Auswahlzustand.
 - **Kostentabelle** – ausklappbar, tabellarische Ziffern, Summe hervorgehoben.
 - **Ergebnisfeld** – baut den WhatsApp-Text live, mit Kopier- und WhatsApp-Knopf.
-- **Beispiel-Galerie** – unter jeder Finca-Option eine horizontal scrollbare Reihe
-  mit drei echten, aktuell recherchierten Anzeigen (Foto, Name, Kapazität, Preis).
-  Reiner Anschauungszweck, kein Bestandteil der Abstimmung selbst – jede Kachel
-  verlinkt auf die Originalanzeige. Bilder liegen lokal unter `images/fincas/`,
-  weil Hotlink-Schutz vieler Vermieter direktes Einbetten sonst verhindert.
+- **Finca-Auswahlkarte** (`.ex`) – seit 11.09.2026 selbst der Stimmzettel, nicht
+  mehr nur Anschauungsmaterial. Neun echte, recherchierte Anzeigen (Foto, Name,
+  Kapazität, Preis/Nacht), gruppiert unter drei nicht-interaktiven Kategorie-
+  Überschriften (stadtnah/mittel/weit). Ein Tap auf die Karte wählt sie als
+  Radio-Input (`name="finca"`, ein Wert über alle neun); ein separater kleiner
+  Link „Anzeige ansehen ↗" öffnet die Originalanzeige in neuem Tab, mit
+  `stopPropagation()` gegen versehentliches Mit-Auswählen. Bilder liegen lokal
+  unter `images/fincas/`, weil Hotlink-Schutz vieler Vermieter direktes
+  Einbetten sonst verhindert.
+- **Live-Preistabelle** – die Kostenaufschlüsselung unter „Wo das Geld hingeht"
+  reagiert auf die gewählte Finca: `data-price`/`data-category`/`data-cap` am
+  Radio-Input füttern eine JS-Berechnung (Flug fix 160 €, Finca-Anteil
+  `Preis×3÷10`, Transfer/Taxi als Kategorie-Konstante, Warnhinweis bei
+  Kapazität < 10). Ohne Auswahl bleibt die statische Beispielrechnung stehen.
+- **Mehrfachauswahl bei Terminen** – „Wann?" nutzt Checkboxen statt Radios,
+  damit wer an beiden Wochenenden kann, auch beide anklicken kann. Optisch
+  identisch zum Radio-Look (`.opt`/`.card`/`.mark`), nur `type="checkbox"`.
 
 Icons sind **gezeichnete SVG** in einheitlichem Strich, keine Emoji.
 

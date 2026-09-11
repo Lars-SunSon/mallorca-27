@@ -107,31 +107,57 @@ legend{padding:0}
 .card .meta{color:var(--text-muted);font-size:.875rem;margin-top:.45rem;line-height:1.55}
 .card .price{display:inline-block;margin-top:.6rem;padding:.25rem .6rem;border-radius:7px;background:rgba(255,214,51,.12);color:var(--gold);font-weight:600;font-size:.9rem}
 .opt input:checked + .card .price{background:var(--gold);color:var(--bg)}
-.card .warn{color:var(--gold-soft);font-size:.85rem;margin-top:.5rem;display:block}
-.card .warn-strong{margin-top:.6rem;padding:.6rem .7rem;border-radius:9px;background:rgba(255,214,51,.1);border:1px solid rgba(255,214,51,.3);color:var(--gold-soft);font-weight:500}
+.warn{color:var(--gold-soft);font-size:.85rem;margin-top:.5rem;display:block}
+.warn-strong{margin-top:.6rem;padding:.6rem .7rem;border-radius:9px;background:rgba(255,214,51,.1);border:1px solid rgba(255,214,51,.3);color:var(--gold-soft);font-weight:500}
 
-/* ---------- Beispiel-Galerien ---------- */
-.examples{margin:-.15rem 0 .1rem;padding:0 0 .2rem}
-.examples-label{font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);padding:0 .2rem;margin-bottom:.55rem}
+/* ---------- Finca-Gruppen (direkt wählbare Beispiele) ---------- */
+.finca-group{margin-top:1.8rem}
+.finca-group:first-child{margin-top:1.2rem}
+.finca-group-title{font-size:1.2rem}
+.finca-group-meta{color:var(--text-muted);font-size:.875rem;margin-top:.4rem;line-height:1.55}
+
 .examples-row{
-  display:grid;grid-auto-flow:column;grid-auto-columns:74%;gap:.7rem;
-  overflow-x:auto;scroll-snap-type:x proximity;padding:0 .2rem .3rem;margin:0 -.2rem;
+  display:grid;grid-auto-flow:column;grid-auto-columns:74%;gap:.7rem;margin-top:1rem;
+  overflow-x:auto;scroll-snap-type:x proximity;padding:0 .2rem .3rem;margin-left:-.2rem;margin-right:-.2rem;
   -webkit-overflow-scrolling:touch;
 }
 @media(min-width:560px){.examples-row{grid-auto-columns:minmax(0,1fr);overflow-x:visible}}
-.ex{
-  scroll-snap-align:start;display:block;background:var(--surface-1);border-radius:12px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.06);text-decoration:none;color:inherit;
-  transition:border-color .18s ease,transform .18s ease;
+
+.ex{position:relative;display:block;scroll-snap-align:start;cursor:pointer}
+.ex input{position:absolute;opacity:0;width:0;height:0}
+.ex-card{
+  position:relative;overflow:hidden;display:block;background:var(--surface-1);border-radius:12px;
+  border:1.5px solid rgba(255,255,255,.07);transition:border-color .18s ease,background .18s ease,transform .18s ease;
 }
-.ex:hover{border-color:var(--accent-deep);transform:translateY(-2px)}
-.ex img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--surface-2)}
-.ex-body{display:flex;flex-direction:column;gap:.15rem;padding:.65rem .75rem .8rem}
+.ex:hover .ex-card{border-color:var(--accent-deep);transform:translateY(-2px)}
+.ex input:focus-visible + .ex-card{outline:2px solid var(--gold);outline-offset:3px}
+.ex input:checked + .ex-card{border-color:var(--gold);background:linear-gradient(180deg,rgba(79,29,120,.5),var(--surface-1))}
+.ex input:checked + .ex-card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 35%,rgba(255,224,102,.28) 50%,transparent 65%);
+  transform:translateX(-110%);animation:sweep .75s ease-out forwards;
+}
+.ex-card img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--surface-2)}
+.ex-check{
+  position:absolute;top:.55rem;right:.55rem;width:26px;height:26px;border-radius:50%;
+  background:rgba(25,9,38,.6);border:1.5px solid rgba(255,255,255,.4);display:grid;place-items:center;
+  transition:background .18s ease,border-color .18s ease;
+}
+.ex-check svg{width:14px;height:14px;stroke:var(--bg);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.5);transition:opacity .18s ease,transform .18s cubic-bezier(.2,1.4,.4,1)}
+.ex input:checked + .ex-card .ex-check{background:var(--gold);border-color:var(--gold)}
+.ex input:checked + .ex-card .ex-check svg{opacity:1;transform:scale(1)}
+.ex-body{display:flex;flex-direction:column;gap:.15rem;padding:.65rem .75rem .75rem}
 .ex-body b{font-family:Montserrat,sans-serif;font-weight:700;font-size:.92rem;color:var(--text)}
 .ex-body span{font-size:.78rem;color:var(--text-muted)}
 .ex-price{color:var(--gold)!important;font-weight:600}
 .ex-warn{color:var(--gold-soft)!important;font-size:.72rem!important}
-.examples-hint{font-size:.76rem;color:var(--text-dim);padding:0 .2rem;margin-top:-.2rem}
+.ex-link{
+  display:block;text-align:center;padding:.5rem;font-size:.75rem;color:var(--text-dim);
+  text-decoration:none;border-top:1px solid rgba(255,255,255,.06);
+}
+.ex-link:hover{color:var(--gold)}
+
+.examples-hint{font-size:.76rem;color:var(--text-dim);margin-top:.7rem}
 .examples-disclaimer{font-size:.8rem;color:var(--text-dim);margin-top:1.4rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)}
 
 /* ---------- Name ---------- */
@@ -226,13 +252,13 @@ footer p + p{margin-top:.6rem}
 <section aria-labelledby="q1">
   <fieldset>
     <legend><h2 id="q1">Wann?</h2></legend>
-    <p class="lead">Beide Wochenenden liegen mitten in der Saison. Am zweiten sind die Sommerferien überall durch – minimal ruhiger, minimal billiger.</p>
+    <p class="lead">Beide Wochenenden liegen mitten in der Saison. Am zweiten sind die Sommerferien überall durch – minimal ruhiger, minimal billiger. Geht bei dir beides? Dann ruhig beide anklicken.</p>
     <div class="opts">
-      <label class="opt"><input type="radio" name="termin" value="2. bis 5. September">
+      <label class="opt"><input type="checkbox" name="termin" value="Do 2.–So 5.9.">
         <span class="card"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
         <span><h3>Do 2. – So 5. September 2027</h3><span class="meta">Erstes Wochenende im September</span></span></span>
       </label>
-      <label class="opt"><input type="radio" name="termin" value="9. bis 12. September">
+      <label class="opt"><input type="checkbox" name="termin" value="Do 9.–So 12.9.">
         <span class="card"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
         <span><h3>Do 9. – So 12. September 2027</h3><span class="meta">Zweites Wochenende, Ferien überall vorbei</span></span></span>
       </label>
@@ -243,83 +269,115 @@ footer p + p{margin-top:.6rem}
 <section aria-labelledby="q2">
   <fieldset>
     <legend><h2 id="q2">Wo pennen wir?</h2></legend>
-    <p class="lead">Je weiter draußen, desto schöner die Finca – und desto teurer das Taxi in der Partynacht. Die Preise unten sind schon komplett durchgerechnet.</p>
-    <div class="opts">
-      <label class="opt"><input type="radio" name="finca" value="Stadtnah (10 km), 341 EUR">
-        <span class="card"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
-        <span><h3>Stadtnah – S'Aranjassa</h3>
-        <span class="meta">10 km zum Arenal, 15 Minuten zum Flughafen. Taxi kostet fast nichts, dafür ist die Villa eher Vorstadt als Postkarte.</span>
-        <span class="price eur">341 € pro Mann</span></span></span>
-      </label>
-      <div class="examples" role="group" aria-label="Beispiele stadtnah">
-        <p class="examples-label">So sieht das ungefähr aus</p>
-        <div class="examples-row">
-          <a class="ex" href="https://www.holidu.com/d/49725547" target="_blank" rel="noopener">
+    <p class="lead">Je weiter draußen, desto schöner die Finca – und desto teurer das Taxi in der Partynacht. Neun echte Anzeigen, direkt wählbar: Klick auf die, die dir am besten gefällt, dann sehen wir unten gleich, was das kostet. Der kleine Link öffnet die Originalanzeige mit allen Fotos.</p>
+
+    <div class="finca-group">
+      <h3 class="finca-group-title">Stadtnah – S'Aranjassa</h3>
+      <p class="finca-group-meta">10 km zum Arenal, 15 Minuten zum Flughafen. Taxi kostet fast nichts, dafür ist die Gegend eher Vorstadt als Postkarte.</p>
+      <div class="examples-row">
+        <label class="ex">
+          <input type="radio" name="finca" value="Villa Agusmar, Son Veri Nou (ab 500 €/Nacht)" data-name="Villa Agusmar" data-category="stadtnah" data-price="500" data-cap="10">
+          <span class="ex-card">
             <img src="images/fincas/stadtnah-1-agusmar.jpg" alt="Villa Agusmar in Son Veri Nou, moderne Villa mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
             <span class="ex-body"><b>Villa Agusmar</b><span>Son Veri Nou · 10 P.</span><span class="ex-price eur">ab 500 €/Nacht</span></span>
-          </a>
-          <a class="ex" href="https://www.ferienwohnungen.de/vacation-home/65801356" target="_blank" rel="noopener">
+          </span>
+          <a class="ex-link" href="https://www.holidu.com/d/49725547" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
+        <label class="ex">
+          <input type="radio" name="finca" value="Gartenvilla Badia Gran (ab 409 €/Nacht)" data-name="Gartenvilla Badia Gran" data-category="stadtnah" data-price="409" data-cap="8">
+          <span class="ex-card">
             <img src="images/fincas/stadtnah-2-badiagran.jpg" alt="Gartenvilla in Badia Gran mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
             <span class="ex-body"><b>Gartenvilla Badia Gran</b><span>Badia Gran · 8 P.</span><span class="ex-price eur">ab 409 €/Nacht</span></span>
-          </a>
-          <a class="ex" href="https://www.fincamallorca.de/fincas/villas/pool/palma/" target="_blank" rel="noopener">
+          </span>
+          <a class="ex-link" href="https://www.ferienwohnungen.de/vacation-home/65801356" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
+        <label class="ex">
+          <input type="radio" name="finca" value="Villa Can Pastilla (ab 348 €/Nacht)" data-name="Villa Can Pastilla" data-category="stadtnah" data-price="348" data-cap="10">
+          <span class="ex-card">
             <img src="images/fincas/stadtnah-3-canpastilla.jpg" alt="Villa in Can Pastilla mit Pool und Garten" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
             <span class="ex-body"><b>Villa Can Pastilla</b><span>Can Pastilla · 10 P.</span><span class="ex-price eur">ab 348 €/Nacht</span></span>
-          </a>
-        </div>
-      </div>
-      <label class="opt"><input type="radio" name="finca" value="Llucmajor (25 km), 315 EUR">
-        <span class="card"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
-        <span><h3>Mittendrin – Llucmajor oder Algaida</h3>
-        <span class="meta">25 km zum Arenal. Klassische Finca-Gegend: für dasselbe Geld deutlich mehr Haus, Taxi eine gute halbe Stunde.</span>
-        <span class="price eur">315 € pro Mann</span></span></span>
-      </label>
-      <div class="examples" role="group" aria-label="Beispiele mittendrin">
-        <p class="examples-label">So sieht das ungefähr aus</p>
-        <div class="examples-row">
-          <a class="ex" href="https://miet-finca-mallorca.de/catalania" target="_blank" rel="noopener">
-            <img src="images/fincas/mittel-1-catalania.jpg" alt="Finca Catalania bei Algaida, Landhaus mit Pool und Palmen" loading="lazy" width="640" height="427">
-            <span class="ex-body"><b>Finca Catalania</b><span>Algaida · 8 P.</span><span class="ex-price eur">Sept. 2027: 445 €/Nacht</span></span>
-          </a>
-          <a class="ex" href="https://www.idealpropertymallorca.com/rentals/country-house-algaida-rural-finca-can-lloret-in-mallorca-with-pool-559725.html" target="_blank" rel="noopener">
-            <img src="images/fincas/mittel-2-canlloret.jpg" alt="Finca Can Lloret bei Algaida mit Steinhaus und Pool" loading="lazy" width="640" height="427">
-            <span class="ex-body"><b>Finca Can Lloret</b><span>Algaida · 8 P.</span><span class="ex-price eur">ab 136 €/Nacht*</span><span class="ex-warn">Kalender geht erst bis Anfang 2027</span></span>
-          </a>
-          <a class="ex" href="https://www.holidu.com/d/45396553" target="_blank" rel="noopener">
-            <img src="images/fincas/mittel-3-soncaldes.jpg" alt="Finca Son Caldés bei Llucmajor mit Pool" loading="lazy" width="640" height="427">
-            <span class="ex-body"><b>Finca Son Caldés</b><span>Llucmajor · 8 P.</span><span class="ex-price eur">ab 286 €/Nacht</span></span>
-          </a>
-        </div>
-        <p class="examples-hint">*Basispreis außerhalb der Saison – im September realistisch deutlich höher.</p>
-      </div>
-      <label class="opt"><input type="radio" name="finca" value="Inselinneres (40 km), 332 EUR">
-        <span class="card"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
-        <span><h3>Weit draußen – Campos oder Felanitx</h3>
-        <span class="meta">40 km. Die schönsten Fincas der Insel, echte Ruhe, Berge am Horizont.</span>
-        <span class="price eur">332 € pro Mann</span>
-        <span class="warn">Nachts um drei sind das 45 Minuten Rückfahrt.</span>
-        <span class="warn warn-strong">⚠ Diese drei Agenturen vermieten oft nur wochenweise (5–7 Nächte, Sa–Sa) – für 3 Nächte eventuell gar nicht buchbar. Vor der Wahl unbedingt anfragen.</span></span></span>
-      </label>
-      <div class="examples" role="group" aria-label="Beispiele weit draußen">
-        <p class="examples-label">So sieht das ungefähr aus</p>
-        <div class="examples-row">
-          <a class="ex" href="https://www.fincaurlaub.de/fincas/finca-son-balart/" target="_blank" rel="noopener">
-            <img src="images/fincas/weit-1-sonbalart.jpg" alt="Finca Son Balart bei Es Llombards, Landhaus mit Pool und Palme" loading="lazy" width="640" height="427">
-            <span class="ex-body"><b>Finca Son Balart</b><span>Es Llombards · 10 P.</span><span class="ex-price eur">ab 323 €/Nacht</span></span>
-          </a>
-          <a class="ex" href="https://www.fincaurlaub.de/fincas/finca-can-torre/" target="_blank" rel="noopener">
-            <img src="images/fincas/weit-2-cantorre.jpg" alt="Finca Can Torre bei Alqueria Blanca, herrschaftliches Landhaus mit Pool" loading="lazy" width="640" height="427">
-            <span class="ex-body"><b>Finca Can Torre</b><span>Alqueria Blanca · 10 P.</span><span class="ex-price eur">ab 693 €/Nacht</span></span>
-          </a>
-          <a class="ex" href="https://www.fincaurlaub.de/fincas/finca-son-quelles/" target="_blank" rel="noopener">
-            <img src="images/fincas/weit-3-sonquelles.jpg" alt="Finca Son Quelles bei Felanitx mit Pool" loading="lazy" width="640" height="427">
-            <span class="ex-body"><b>Finca Son Quelles</b><span>Felanitx · 8 P.</span><span class="ex-price eur">ab 440 €/Nacht</span></span>
-          </a>
-        </div>
-        <p class="examples-hint">Alle drei laut Anbieter mit 5–7 Nächten Mindestaufenthalt (Sa–Sa). Für Do–So vorher telefonisch klären.</p>
+          </span>
+          <a class="ex-link" href="https://www.fincamallorca.de/fincas/villas/pool/palma/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
       </div>
     </div>
-    <p class="examples-disclaimer">Alle neun Beispiele sind echte Anzeigen, Stand September 2026. Genaue Gesamtpreise für September 2027 geben die meisten Portale erst nach manueller Kalenderauswahl heraus – automatisch ließ sich nur bei Finca Catalania ein echter 2027er-Preis auslesen (siehe Karte oben: 445 €/Nacht statt der alten 357 €). Reine Orientierung, keine geprüfte Verfügbarkeit. Ein Klick öffnet die Originalanzeige mit allen Fotos.</p>
+
+    <div class="finca-group">
+      <h3 class="finca-group-title">Mittendrin – Llucmajor oder Algaida</h3>
+      <p class="finca-group-meta">25 km zum Arenal. Klassische Finca-Gegend: für ähnliches Geld deutlich mehr Haus, Taxi eine gute halbe Stunde.</p>
+      <div class="examples-row">
+        <label class="ex">
+          <input type="radio" name="finca" value="Finca Catalania, Algaida (Sept. 2027: 445 €/Nacht)" data-name="Finca Catalania" data-category="mittel" data-price="445" data-cap="8">
+          <span class="ex-card">
+            <img src="images/fincas/mittel-1-catalania.jpg" alt="Finca Catalania bei Algaida, Landhaus mit Pool und Palmen" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
+            <span class="ex-body"><b>Finca Catalania</b><span>Algaida · 8 P.</span><span class="ex-price eur">Sept. 2027: 445 €/Nacht</span></span>
+          </span>
+          <a class="ex-link" href="https://miet-finca-mallorca.de/catalania" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
+        <label class="ex">
+          <input type="radio" name="finca" value="Finca Can Lloret, Algaida (ab 136 €/Nacht, Basispreis)" data-name="Finca Can Lloret" data-category="mittel" data-price="136" data-cap="8">
+          <span class="ex-card">
+            <img src="images/fincas/mittel-2-canlloret.jpg" alt="Finca Can Lloret bei Algaida mit Steinhaus und Pool" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
+            <span class="ex-body"><b>Finca Can Lloret</b><span>Algaida · 8 P.</span><span class="ex-price eur">ab 136 €/Nacht*</span><span class="ex-warn">Kalender geht erst bis Anfang 2027</span></span>
+          </span>
+          <a class="ex-link" href="https://www.idealpropertymallorca.com/rentals/country-house-algaida-rural-finca-can-lloret-in-mallorca-with-pool-559725.html" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
+        <label class="ex">
+          <input type="radio" name="finca" value="Finca Son Caldés, Llucmajor (ab 286 €/Nacht)" data-name="Finca Son Caldés" data-category="mittel" data-price="286" data-cap="8">
+          <span class="ex-card">
+            <img src="images/fincas/mittel-3-soncaldes.jpg" alt="Finca Son Caldés bei Llucmajor mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
+            <span class="ex-body"><b>Finca Son Caldés</b><span>Llucmajor · 8 P.</span><span class="ex-price eur">ab 286 €/Nacht</span></span>
+          </span>
+          <a class="ex-link" href="https://www.holidu.com/d/45396553" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
+      </div>
+      <p class="examples-hint">*Can Lloret: Basispreis außerhalb der Saison – im September realistisch deutlich höher.</p>
+    </div>
+
+    <div class="finca-group">
+      <h3 class="finca-group-title">Weit draußen – Campos oder Felanitx</h3>
+      <p class="finca-group-meta">40 km. Die schönsten Fincas der Insel, echte Ruhe, Berge am Horizont.</p>
+      <p class="warn">Nachts um drei sind das 45 Minuten Rückfahrt.</p>
+      <p class="warn warn-strong">⚠ Diese drei Agenturen vermieten oft nur wochenweise (5–7 Nächte, Sa–Sa) – für 3 Nächte eventuell gar nicht buchbar. Vor der Wahl unbedingt anfragen.</p>
+      <div class="examples-row">
+        <label class="ex">
+          <input type="radio" name="finca" value="Finca Son Balart, Es Llombards (ab 323 €/Nacht)" data-name="Finca Son Balart" data-category="weit" data-price="323" data-cap="10">
+          <span class="ex-card">
+            <img src="images/fincas/weit-1-sonbalart.jpg" alt="Finca Son Balart bei Es Llombards, Landhaus mit Pool und Palme" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
+            <span class="ex-body"><b>Finca Son Balart</b><span>Es Llombards · 10 P.</span><span class="ex-price eur">ab 323 €/Nacht</span></span>
+          </span>
+          <a class="ex-link" href="https://www.fincaurlaub.de/fincas/finca-son-balart/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
+        <label class="ex">
+          <input type="radio" name="finca" value="Finca Can Torre, Alqueria Blanca (ab 693 €/Nacht)" data-name="Finca Can Torre" data-category="weit" data-price="693" data-cap="10">
+          <span class="ex-card">
+            <img src="images/fincas/weit-2-cantorre.jpg" alt="Finca Can Torre bei Alqueria Blanca, herrschaftliches Landhaus mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
+            <span class="ex-body"><b>Finca Can Torre</b><span>Alqueria Blanca · 10 P.</span><span class="ex-price eur">ab 693 €/Nacht</span></span>
+          </span>
+          <a class="ex-link" href="https://www.fincaurlaub.de/fincas/finca-can-torre/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
+        <label class="ex">
+          <input type="radio" name="finca" value="Finca Son Quelles, Felanitx (ab 440 €/Nacht)" data-name="Finca Son Quelles" data-category="weit" data-price="440" data-cap="8">
+          <span class="ex-card">
+            <img src="images/fincas/weit-3-sonquelles.jpg" alt="Finca Son Quelles bei Felanitx mit Pool" loading="lazy" width="640" height="427">
+            <span class="ex-check"><svg viewBox="0 0 24 24"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
+            <span class="ex-body"><b>Finca Son Quelles</b><span>Felanitx · 8 P.</span><span class="ex-price eur">ab 440 €/Nacht</span></span>
+          </span>
+          <a class="ex-link" href="https://www.fincaurlaub.de/fincas/finca-son-quelles/" target="_blank" rel="noopener" onclick="event.stopPropagation()">Anzeige ansehen ↗</a>
+        </label>
+      </div>
+      <p class="examples-hint">Alle drei laut Anbieter mit 5–7 Nächten Mindestaufenthalt (Sa–Sa). Für Do–So vorher telefonisch klären.</p>
+    </div>
+
+    <p class="examples-disclaimer">Alle neun Beispiele sind echte Anzeigen, Stand September 2026. Deine Auswahl ist deine persönliche Präferenz, kein Buchungsversprechen – reale Verfügbarkeit für September 2027 ist bei den wenigsten geprüft (siehe Hinweise oben). Genaue Gesamtpreise geben die meisten Portale erst nach manueller Kalenderauswahl heraus; automatisch ließ sich nur bei Finca Catalania ein echter 2027er-Preis auslesen.</p>
   </fieldset>
 </section>
 
@@ -369,23 +427,24 @@ footer p + p{margin-top:.6rem}
 
 <section aria-labelledby="kosten">
   <h2 id="kosten">Wo das Geld hingeht</h2>
-  <p class="lead">Beispielrechnung für zehn Mann, mittlere Finca-Lage, eine Partynacht.</p>
-  <details>
+  <p class="lead" id="pf-basis">Beispielrechnung für zehn Mann, mittlere Finca-Lage, eine Partynacht. Wähl oben eine Finca – hier rechnet es live mit.</p>
+  <details open>
     <summary>Aufschlüsselung pro Kopf
       <svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
     </summary>
     <table>
       <tbody>
-        <tr><td>Flug Berlin – Palma, hin und zurück</td><td class="eur">160 €</td></tr>
-        <tr><td>Finca mit Pool, 3 Nächte (350 €/Nacht)</td><td class="eur">105 €</td></tr>
-        <tr><td>Transfer Flughafen, hin und zurück</td><td class="eur">30 €</td></tr>
-        <tr><td>Partynacht, Taxi hin und zurück</td><td class="eur">16 €</td></tr>
-        <tr><td>Einkaufsfahrt</td><td class="eur">4 €</td></tr>
-        <tr class="sum"><td>Fixkosten zusammen</td><td class="eur">315 €</td></tr>
-        <tr><td>Bleibt vom Budget für Essen, Getränke, Partynacht</td><td class="eur">135 €</td></tr>
+        <tr><td>Flug Berlin – Palma, hin und zurück</td><td class="eur" id="pf-flug">160 €</td></tr>
+        <tr><td id="pf-finca-label">Finca mit Pool, 3 Nächte (350 €/Nacht)</td><td class="eur" id="pf-finca">105 €</td></tr>
+        <tr><td>Transfer Flughafen, hin und zurück</td><td class="eur" id="pf-transfer">30 €</td></tr>
+        <tr><td>Partynacht, Taxi hin und zurück</td><td class="eur" id="pf-taxi">16 €</td></tr>
+        <tr><td>Einkaufsfahrt</td><td class="eur" id="pf-einkauf">4 €</td></tr>
+        <tr class="sum"><td>Fixkosten zusammen</td><td class="eur" id="pf-summe">315 €</td></tr>
+        <tr><td>Bleibt vom Budget für Essen, Getränke, Partynacht</td><td class="eur" id="pf-rest">135 €</td></tr>
       </tbody>
     </table>
-    <p class="hint">Preisstand September 2026. Flüge für September 2027 sind noch nicht buchbar – der Verkauf öffnet etwa elf Monate vorher. Die 160 € sind ein Planwert; wird es teurer, sage ich rechtzeitig Bescheid. Bei acht statt zehn Mann steigt alles um rund 50 € pro Kopf.</p>
+    <p class="hint" id="pf-cap-warn" style="display:none"></p>
+    <p class="hint">Preisstand September 2026, Finca-Preis wird live aus deiner Auswahl übernommen. Flüge für September 2027 sind noch nicht buchbar – der Verkauf öffnet etwa elf Monate vorher. Die 160 € sind ein Planwert; wird es teurer, sage ich rechtzeitig Bescheid. Bei acht statt zehn Mann steigt alles um rund 50 € pro Kopf.</p>
   </details>
 </section>
 
@@ -419,7 +478,7 @@ footer p + p{margin-top:.6rem}
 (function(){
   "use strict";
   var FRAGEN = [
-    {name:"termin",    label:"Termin"},
+    {name:"termin",    label:"Termin",   multi:true},
     {name:"finca",     label:"Finca"},
     {name:"transport", label:"Transport"},
     {name:"dabei",     label:"Teilnahme"}
@@ -431,15 +490,32 @@ footer p + p{margin-top:.6rem}
   var btnWa   = document.getElementById("wa");
   var btnCopy = document.getElementById("copy");
 
-  function gewaehlt(name){
-    var el = document.querySelector('input[name="'+name+'"]:checked');
-    return el ? el.value : null;
+  /* Fixkosten je Kategorie (Transfer + Taxi Partynacht), pro Kopf, 10 Mann */
+  var KATEGORIEN = {
+    stadtnah: {transfer:20, taxi:12},
+    mittel:   {transfer:30, taxi:20},
+    weit:     {transfer:40, taxi:28}
+  };
+
+  function gewaehlteEls(name){
+    return Array.prototype.slice.call(document.querySelectorAll('input[name="'+name+'"]:checked'));
+  }
+
+  function gewaehlt(f){
+    var els = gewaehlteEls(f.name);
+    if(f.multi) return els.map(function(e){ return e.value; });
+    return els.length ? els[0].value : null;
+  }
+
+  function beantwortet(f){
+    var v = gewaehlt(f);
+    return f.multi ? v.length > 0 : !!v;
   }
 
   function sichern(){
     try{
       var d = {name:nameEl.value};
-      FRAGEN.forEach(function(f){ d[f.name] = gewaehlt(f.name); });
+      FRAGEN.forEach(function(f){ d[f.name] = gewaehlt(f); });
       localStorage.setItem(STORE, JSON.stringify(d));
     }catch(e){/* Privatmodus: dann eben ohne */}
   }
@@ -449,9 +525,13 @@ footer p + p{margin-top:.6rem}
       var d = JSON.parse(localStorage.getItem(STORE) || "{}");
       if(d.name) nameEl.value = d.name;
       FRAGEN.forEach(function(f){
-        if(!d[f.name]) return;
-        var el = document.querySelector('input[name="'+f.name+'"][value="'+d[f.name].replace(/"/g,'\\"')+'"]');
-        if(el) el.checked = true;
+        var val = d[f.name];
+        if(!val) return;
+        var werte = f.multi ? (Array.isArray(val) ? val : [val]) : [val];
+        werte.forEach(function(v){
+          var el = document.querySelector('input[name="'+f.name+'"][value="'+String(v).replace(/"/g,'\\"')+'"]');
+          if(el) el.checked = true;
+        });
       });
     }catch(e){}
   }
@@ -460,14 +540,56 @@ footer p + p{margin-top:.6rem}
     var wer = nameEl.value.trim();
     var zeilen = ["Malle 2027 – meine Stimme" + (wer ? " ("+wer+")" : "")];
     FRAGEN.forEach(function(f){
-      var v = gewaehlt(f.name);
-      if(v) zeilen.push(f.label + ": " + v);
+      var v = gewaehlt(f);
+      var txt = f.multi ? v.join(" + ") : v;
+      if(txt) zeilen.push(f.label + ": " + txt);
     });
     return zeilen.join("\n");
   }
 
   function offen(){
-    return FRAGEN.filter(function(f){ return !gewaehlt(f.name); });
+    return FRAGEN.filter(function(f){ return !beantwortet(f); });
+  }
+
+  function setTxt(id, txt){
+    var e = document.getElementById(id);
+    if(e) e.textContent = txt;
+  }
+
+  function preisAktualisieren(){
+    var el = document.querySelector('input[name="finca"]:checked');
+    if(!el) return; // Standardbeispiel im HTML bleibt stehen, bis eine Wahl getroffen ist
+
+    var preis = Number(el.dataset.price) || 0;
+    var kat   = KATEGORIEN[el.dataset.category] || KATEGORIEN.mittel;
+    var cap   = Number(el.dataset.cap) || 10;
+    var name  = el.dataset.name || el.value;
+
+    var flug       = 160;
+    var fincaShare = Math.round(preis * 3 / 10);
+    var einkauf    = 4;
+    var summe      = flug + fincaShare + kat.transfer + kat.taxi + einkauf;
+    var rest       = 450 - summe;
+
+    setTxt("pf-basis", "Beispielrechnung für " + name + " (" + preis + " €/Nacht), zehn Mann, eine Partynacht.");
+    setTxt("pf-finca-label", "Finca mit Pool, 3 Nächte (" + preis + " €/Nacht)");
+    setTxt("pf-flug", flug + " €");
+    setTxt("pf-finca", fincaShare + " €");
+    setTxt("pf-transfer", kat.transfer + " €");
+    setTxt("pf-taxi", kat.taxi + " €");
+    setTxt("pf-einkauf", einkauf + " €");
+    setTxt("pf-summe", summe + " €");
+    setTxt("pf-rest", rest + " €");
+
+    var capWarn = document.getElementById("pf-cap-warn");
+    if(capWarn){
+      if(cap < 10){
+        capWarn.textContent = "Diese Finca fasst laut Anzeige nur " + cap + " Personen – bei zehn Mann eng, eventuell Aufpreis oder zwei Häuser nötig.";
+        capWarn.style.display = "";
+      } else {
+        capWarn.style.display = "none";
+      }
+    }
   }
 
   function aktualisieren(){
@@ -489,11 +611,12 @@ footer p + p{margin-top:.6rem}
 
     btnWa.disabled = !fertig;
     btnCopy.disabled = !fertig;
+    preisAktualisieren();
     sichern();
   }
 
   document.addEventListener("change", function(e){
-    if(e.target.matches('input[type=radio]')) aktualisieren();
+    if(e.target.matches('input[type=radio], input[type=checkbox]')) aktualisieren();
   });
   nameEl.addEventListener("input", aktualisieren);
 
