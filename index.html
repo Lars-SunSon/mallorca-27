@@ -107,7 +107,8 @@ legend{padding:0}
 .card .meta{color:var(--text-muted);font-size:.875rem;margin-top:.45rem;line-height:1.55}
 .card .price{display:inline-block;margin-top:.6rem;padding:.25rem .6rem;border-radius:7px;background:rgba(255,214,51,.12);color:var(--gold);font-weight:600;font-size:.9rem}
 .opt input:checked + .card .price{background:var(--gold);color:var(--bg)}
-.card .warn{color:var(--gold-soft);font-size:.85rem;margin-top:.5rem}
+.card .warn{color:var(--gold-soft);font-size:.85rem;margin-top:.5rem;display:block}
+.card .warn-strong{margin-top:.6rem;padding:.6rem .7rem;border-radius:9px;background:rgba(255,214,51,.1);border:1px solid rgba(255,214,51,.3);color:var(--gold-soft);font-weight:500}
 
 /* ---------- Beispiel-Galerien ---------- */
 .examples{margin:-.15rem 0 .1rem;padding:0 0 .2rem}
@@ -129,6 +130,7 @@ legend{padding:0}
 .ex-body b{font-family:Montserrat,sans-serif;font-weight:700;font-size:.92rem;color:var(--text)}
 .ex-body span{font-size:.78rem;color:var(--text-muted)}
 .ex-price{color:var(--gold)!important;font-weight:600}
+.ex-warn{color:var(--gold-soft)!important;font-size:.72rem!important}
 .examples-hint{font-size:.76rem;color:var(--text-dim);padding:0 .2rem;margin-top:-.2rem}
 .examples-disclaimer{font-size:.8rem;color:var(--text-dim);margin-top:1.4rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)}
 
@@ -277,11 +279,11 @@ footer p + p{margin-top:.6rem}
         <div class="examples-row">
           <a class="ex" href="https://miet-finca-mallorca.de/catalania" target="_blank" rel="noopener">
             <img src="images/fincas/mittel-1-catalania.jpg" alt="Finca Catalania bei Algaida, Landhaus mit Pool und Palmen" loading="lazy" width="640" height="427">
-            <span class="ex-body"><b>Finca Catalania</b><span>Algaida · 8 P.</span><span class="ex-price eur">ab 357 €/Nacht</span></span>
+            <span class="ex-body"><b>Finca Catalania</b><span>Algaida · 8 P.</span><span class="ex-price eur">Sept. 2027: 445 €/Nacht</span></span>
           </a>
           <a class="ex" href="https://www.idealpropertymallorca.com/rentals/country-house-algaida-rural-finca-can-lloret-in-mallorca-with-pool-559725.html" target="_blank" rel="noopener">
             <img src="images/fincas/mittel-2-canlloret.jpg" alt="Finca Can Lloret bei Algaida mit Steinhaus und Pool" loading="lazy" width="640" height="427">
-            <span class="ex-body"><b>Finca Can Lloret</b><span>Algaida · 8 P.</span><span class="ex-price eur">ab 136 €/Nacht*</span></span>
+            <span class="ex-body"><b>Finca Can Lloret</b><span>Algaida · 8 P.</span><span class="ex-price eur">ab 136 €/Nacht*</span><span class="ex-warn">Kalender geht erst bis Anfang 2027</span></span>
           </a>
           <a class="ex" href="https://www.holidu.com/d/45396553" target="_blank" rel="noopener">
             <img src="images/fincas/mittel-3-soncaldes.jpg" alt="Finca Son Caldés bei Llucmajor mit Pool" loading="lazy" width="640" height="427">
@@ -295,7 +297,8 @@ footer p + p{margin-top:.6rem}
         <span><h3>Weit draußen – Campos oder Felanitx</h3>
         <span class="meta">40 km. Die schönsten Fincas der Insel, echte Ruhe, Berge am Horizont.</span>
         <span class="price eur">332 € pro Mann</span>
-        <span class="warn">Nachts um drei sind das 45 Minuten Rückfahrt.</span></span></span>
+        <span class="warn">Nachts um drei sind das 45 Minuten Rückfahrt.</span>
+        <span class="warn warn-strong">⚠ Diese drei Agenturen vermieten oft nur wochenweise (5–7 Nächte, Sa–Sa) – für 3 Nächte eventuell gar nicht buchbar. Vor der Wahl unbedingt anfragen.</span></span></span>
       </label>
       <div class="examples" role="group" aria-label="Beispiele weit draußen">
         <p class="examples-label">So sieht das ungefähr aus</p>
@@ -313,9 +316,10 @@ footer p + p{margin-top:.6rem}
             <span class="ex-body"><b>Finca Son Quelles</b><span>Felanitx · 8 P.</span><span class="ex-price eur">ab 440 €/Nacht</span></span>
           </a>
         </div>
+        <p class="examples-hint">Alle drei laut Anbieter mit 5–7 Nächten Mindestaufenthalt (Sa–Sa). Für Do–So vorher telefonisch klären.</p>
       </div>
     </div>
-    <p class="examples-disclaimer">Alle neun Beispiele sind echte Anzeigen, Stand September 2026 – reine Orientierung, keine geprüfte Verfügbarkeit für 2027. Ein Klick öffnet die Originalanzeige mit allen Fotos.</p>
+    <p class="examples-disclaimer">Alle neun Beispiele sind echte Anzeigen, Stand September 2026. Genaue Gesamtpreise für September 2027 geben die meisten Portale erst nach manueller Kalenderauswahl heraus – automatisch ließ sich nur bei Finca Catalania ein echter 2027er-Preis auslesen (siehe Karte oben: 445 €/Nacht statt der alten 357 €). Reine Orientierung, keine geprüfte Verfügbarkeit. Ein Klick öffnet die Originalanzeige mit allen Fotos.</p>
   </fieldset>
 </section>
 
